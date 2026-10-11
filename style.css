@@ -890,17 +890,17 @@ body.rfgc-locked{overflow:hidden;}
   /* direct-line directory: name left, tappable number right */
   .rfgc .spec a[href^="tel:"]{white-space:nowrap;}
   .rfgc .spec a[href^="mailto:"], .rfgc .aside .row a[href^="mailto:"]{word-break:break-all;}
+  .rfgc .dirpick{display:none;}
   @media (max-width:760px){
-    .rfgc .dirgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
-    .rfgc .dirgrid .spec.dirline{display:flex; flex-direction:column; justify-content:space-between; gap:6px; padding:11px 12px;
-      border:1px solid var(--border); border-radius:2px; background:var(--bg-alt);}
-    .rfgc .dirgrid .spec.dirline .k{text-transform:none; letter-spacing:0; font-size:12.5px; line-height:1.35; font-weight:600; color:var(--ink); padding-top:0;}
-    .rfgc .dirgrid .spec.dirline a{display:block; padding:4px 0 2px; font-size:13px; font-weight:700; color:var(--blue); text-decoration:none;}
-  }
-  @media (max-width:360px){
-    .rfgc .dirgrid .spec.dirline{padding:10px;}
-    .rfgc .dirgrid .spec.dirline .k{font-size:12px;}
-    .rfgc .dirgrid .spec.dirline a{font-size:12px;}
+    .rfgc .dirgrid{display:none;}
+    .rfgc .dirpick{display:flex; flex-direction:column; gap:10px;}
+    .rfgc .dirpick label{font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-mute);}
+    .rfgc .dirpick select{width:100%; appearance:none; -webkit-appearance:none; font-family:inherit; font-size:16px; color:var(--ink);
+      background:var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23556' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 14px center;
+      border:1px solid var(--border); border-radius:2px; padding:13px 40px 13px 14px;}
+    .rfgc .dirpick-call{display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px; background:var(--navy);
+      color:#fff; font-size:15px; font-weight:600; border-radius:2px; text-decoration:none;}
+    .rfgc .dirpick-call:hover{color:#fff;}
   }
 
   @media (max-width:760px){

@@ -144,3 +144,27 @@
     });
   });
 })();
+
+(function(){
+  function initDirPick(){
+    document.querySelectorAll('.rfgc .dirgrid').forEach(function(grid){
+      if (grid.previousElementSibling && grid.previousElementSibling.classList.contains('dirpick')) return;
+      var rows = [].slice.call(grid.querySelectorAll('.spec.dirline')).map(function(r){
+        var a = r.querySelector('a[href^="tel:"]');
+        return {name: r.querySelector('.k').textContent.trim(), num: a.textContent.trim(), href: a.getAttribute('href')};
+      });
+      if (!rows.length) return;
+      var wrap = document.createElement('div'); wrap.className = 'dirpick';
+      var id = 'dirpick-' + Math.random().toString(36).slice(2,7);
+      var lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = 'Choose a property';
+      var sel = document.createElement('select'); sel.id = id;
+      rows.forEach(function(r,i){ var o = document.createElement('option'); o.value = i; o.textContent = r.name; sel.appendChild(o); });
+      var call = document.createElement('a'); call.className = 'dirpick-call';
+      function upd(){ var r = rows[sel.value]; call.href = r.href; call.textContent = 'Call ' + r.num; }
+      sel.addEventListener('change', upd); upd();
+      wrap.appendChild(lab); wrap.appendChild(sel); wrap.appendChild(call);
+      grid.parentNode.insertBefore(wrap, grid);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDirPick); else initDirPick();
+})();
