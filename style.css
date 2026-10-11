@@ -891,14 +891,16 @@ body.rfgc-locked{overflow:hidden;}
   .rfgc .spec a[href^="tel:"]{white-space:nowrap;}
   .rfgc .spec a[href^="mailto:"], .rfgc .aside .row a[href^="mailto:"]{word-break:break-all;}
   @media (max-width:760px){
-    .rfgc .spec.dirline{grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:12px 0;}
-    .rfgc .spec.dirline .k{text-transform:none; letter-spacing:0; font-size:14px; font-weight:600; color:var(--ink); padding-top:0;}
-    .rfgc .spec.dirline a{display:inline-flex; align-items:center; min-height:36px; padding:0 12px; border:1px solid var(--border);
-      border-radius:2px; font-size:13.5px; font-weight:600; color:var(--blue); text-decoration:none; background:var(--blue-tint);}
+    .rfgc .dirgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+    .rfgc .dirgrid .spec.dirline{display:flex; flex-direction:column; justify-content:space-between; gap:6px; padding:11px 12px;
+      border:1px solid var(--border); border-radius:2px; background:var(--bg-alt);}
+    .rfgc .dirgrid .spec.dirline .k{text-transform:none; letter-spacing:0; font-size:12.5px; line-height:1.35; font-weight:600; color:var(--ink); padding-top:0;}
+    .rfgc .dirgrid .spec.dirline a{display:block; padding:4px 0 2px; font-size:13px; font-weight:700; color:var(--blue); text-decoration:none;}
   }
-  @media (max-width:380px){
-    .rfgc .spec.dirline .k{font-size:13px;}
-    .rfgc .spec.dirline a{font-size:12.5px; padding:0 9px;}
+  @media (max-width:360px){
+    .rfgc .dirgrid .spec.dirline{padding:10px;}
+    .rfgc .dirgrid .spec.dirline .k{font-size:12px;}
+    .rfgc .dirgrid .spec.dirline a{font-size:12px;}
   }
 
   @media (max-width:760px){
