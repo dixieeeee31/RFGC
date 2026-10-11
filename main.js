@@ -61,6 +61,22 @@
       if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
+    var send = e.target.closest('.form-panel .btn-primary');
+    if (send) {
+      e.preventDefault();
+      var panel = send.closest('.form-panel');
+      var tick = panel.querySelector('input[type="checkbox"]');
+      if (tick && !tick.checked) { alert('Please tick the privacy notice box before sending.'); tick.focus(); return; }
+      var lines = [];
+      panel.querySelectorAll('input:not([type="checkbox"]), textarea').forEach(function (el) {
+        if (el.value.trim()) lines.push(el.getAttribute('aria-label') + ': ' + el.value.trim());
+      });
+      var head = panel.parentNode.querySelector('h2');
+      window.location.href = 'mailto:angie.doble@viverehotel.com.ph?subject=' +
+        encodeURIComponent('RFGC website - ' + (head ? head.textContent : 'Inquiry')) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      return;
+    }
     var pick = e.target.closest('.audience-pick button');
     if (pick) {
       pick.parentNode.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
@@ -92,5 +108,39 @@
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeDrawer(); closeOpp(); }
+  });
+
+  /* ---- mobile carousels ---- */
+  ['.vcards', '.icards', '.why-grid', '.ncards', '.pgrid', '.div-grid', '.track-grid', '.supply-steps', '.milestones'].forEach(function (sel) {
+    document.querySelectorAll('.rfgc ' + sel).forEach(function (row) {
+      row.classList.add('m-car');
+      var items = row.children;
+      if (items.length < 2) return;
+      var dots = document.createElement('div');
+      dots.className = 'm-dots';
+      for (var i = 0; i < items.length; i++) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Slide ' + (i + 1));
+        (function (n) {
+          b.addEventListener('click', function () {
+            row.scrollTo({ left: items[n].offsetLeft - items[0].offsetLeft, behavior: 'smooth' });
+          });
+        })(i);
+        dots.appendChild(b);
+      }
+      row.parentNode.insertBefore(dots, row.nextSibling);
+      var mark = function () {
+        var x = row.scrollLeft, best = 0, d = Infinity;
+        for (var i = 0; i < items.length; i++) {
+          var dd = Math.abs(items[i].offsetLeft - items[0].offsetLeft - x);
+          if (dd < d) { d = dd; best = i; }
+        }
+        if (row.scrollLeft + row.clientWidth >= row.scrollWidth - 4) best = items.length - 1;
+        Array.prototype.forEach.call(dots.children, function (b, i) { b.classList.toggle('on', i === best); });
+      };
+      row.addEventListener('scroll', function () { window.requestAnimationFrame(mark); }, { passive: true });
+      mark();
+    });
   });
 })();
