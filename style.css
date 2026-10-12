@@ -655,7 +655,7 @@ body.rfgc-locked{overflow:hidden;}
 
   .rfgc .icards{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(20px,2.4vw,28px);}
   .rfgc .icard{border:1px solid var(--border); display:flex; flex-direction:column; background:var(--bg);}
-  .rfgc .icard .ph, .rfgc .icard .ph-pending{height:210px;}
+  .rfgc .icard .ph, .rfgc .icard .ph-pending{height:auto; aspect-ratio:4/3;}
   .rfgc .icard .ph{position:relative; overflow:hidden; background:var(--bg-alt);}
   .rfgc .icard .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
   .rfgc .icard .body{padding:24px;}
@@ -794,7 +794,7 @@ body.rfgc-locked{overflow:hidden;}
     .rfgc .m-car > *:only-child{flex-basis:100%;}
     .rfgc .m-car .vcard{min-height:400px;}
     .rfgc .m-car .wcard{border:1px solid var(--border); padding:24px 22px; background:var(--bg);}
-    .rfgc .m-car .icard .ph, .rfgc .m-car .icard .ph-pending{height:190px;}
+    .rfgc .m-car .icard .ph, .rfgc .m-car .icard .ph-pending{height:auto; aspect-ratio:4/3;}
     .rfgc .m-dots{display:flex; justify-content:center; gap:2px; margin-top:14px;}
     .rfgc .m-dots button{width:26px; height:26px; padding:0; border:0; background:none; cursor:pointer;
       display:flex; align-items:center; justify-content:center;}
